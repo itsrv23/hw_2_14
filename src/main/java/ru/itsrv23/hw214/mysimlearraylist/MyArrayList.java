@@ -11,22 +11,19 @@ public class MyArrayList implements StringList {
     private int size = 0;
     private String[] data;
 
-    private int iterIndex = 0;
 
     public MyArrayList() {
         data = new String[capacity];
-        for (int i = 0; i < data.length; i++) {
-            data[i] = ""; // реализация условия, не хранить null
-        }
+        // реализация условия, не хранить null
+        Arrays.fill(data, "");
     }
 
     public MyArrayList(int capacity) {
         if (capacity > 0) {
             this.capacity = capacity;
             data = new String[this.capacity];
-            for (int i = 0; i < data.length; i++) {
-                data[i] = ""; // реализация условия, не хранить null
-            }
+            // реализация условия, не хранить null
+            Arrays.fill(data, "");
         } else {
             throw new IllegalArgumentException("Illegal Capacity: " + capacity);
         }
@@ -96,10 +93,7 @@ public class MyArrayList implements StringList {
     public boolean contains(String item) {
         checkItemIsNull(item);
         int index = indexOf(item);
-        if (index != -1) {
-            return true;
-        }
-        return false;
+        return index != -1;
     }
 
 
@@ -168,10 +162,7 @@ public class MyArrayList implements StringList {
     // Вернуть true, если элементов в списке нет, иначе false.
     @Override
     public boolean isEmpty() {
-        if (size > 0) {
-            return false;
-        }
-        return true;
+        return size <= 0;
     }
 
     // Удалить все элементы из списка.
